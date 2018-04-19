@@ -6,7 +6,8 @@
       position: relative;
       border-radius: 4px;
       overflow: hidden;
-      margin: 10%;
+      margin: 16px 16px 0 16px;
+      height: 180px;
 }
 .book>img{
     align-self: center;
@@ -36,17 +37,17 @@
 .book>.book-info>p.author{
     margin-top: auto;
 }
-.menu-icon{
+.book-menu{
     height: 48px;
     width: 48px;
-    display: flex;
-    justify-content: center;
+    background: url('./icons/more.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-left: auto;
+    
 }
-.book-menu{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    right: 0;
-    background:white;
-    display: none;
+select{
+    height: 48px;
+    width: 48px;
+    opacity: 0;
 }
