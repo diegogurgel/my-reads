@@ -6,7 +6,7 @@
       position: relative;
       border-radius: 4px;
       overflow: hidden;
-      margin: 16px 16px 0 16px;
+      margin: 16px 0 0 16px;
       height: 180px;
 }
 .book>img{

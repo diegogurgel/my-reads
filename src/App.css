@@ -1,0 +1,24 @@
+.app{
+    margin-bottom: 32px;
+}
+.app a{
+    text-decoration: none;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    background: #4CAF50;
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    display: block;
+}
+.app a::before{
+    content: ' ';
+    height: 48px;
+    width: 48px;
+    position: absolute;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-image: url('./icons/add.svg');
+}
