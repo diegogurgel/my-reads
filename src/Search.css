@@ -1,0 +1,9 @@
+.back-link{
+    height: 48px;
+    width: 48px;
+    background: url('./icons/back.svg');
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center center;
+    float: left;
+}

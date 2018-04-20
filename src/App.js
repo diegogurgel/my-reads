@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom'
+import Search from './Search'
 import Shelf from "./Shelf";
 import { getAll as getBooks } from './BooksAPI';
 import './App.css';
@@ -35,7 +36,9 @@ class App extends Component {
             </div>
 
           )} />
-          <Route path="/add-book" />
+          <Route path="/add-book" render={() => (
+            <Search onBookChanged={this.onBookChanged} myReads={this.state.books}/>
+          )} />
         </div>
       </BrowserRouter>
     );

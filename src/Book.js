@@ -4,7 +4,7 @@ import { update as updateBook } from './BooksAPI';
 import './Book.css'
 import more from './icons/more.svg'
 class Book extends Component {
-    onMoveToSelected = (selectedStatus, book) => {
+    onMoveToShelf = (selectedStatus, book) => {
         book.shelf = selectedStatus.target.value
         updateBook(book, book.shelf)
             .then((something)=>{
@@ -15,16 +15,16 @@ class Book extends Component {
         const book = { ...this.props }
         return (
             <div className="book">
-                <img src={book.imageLinks.thumbnail} alt="thumbnail" />
+                <img src={book.imageLinks && book.imageLinks.thumbnail} alt="thumbnail" />
                 <div className="book-info">
                     <h2>{book.title}</h2>
                     <p className="subtitle">{book.subtitle}</p>
                     <p className="ratting">Rating: {book.averageRating}</p>
-                    <p className="author">Author(s): {book.authors.join(', ')}</p>
+                    <p className="author">Author(s): {book.authors && book.authors.join(', ')}</p>
                 </div>
                 <div className="book-menu">
-                    <select value={book.shelf} onChange={(ev) => (this.onMoveToSelected(ev, book))}>
-                        <option value="none" disabled>Move to...</option>
+                    <select value={book.shelf} onChange={(ev) => (this.onMoveToShelf(ev, book))}>
+                        <option disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
                         <option value="read">Read</option>
@@ -38,8 +38,8 @@ class Book extends Component {
 Book.propTypes = {
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string,
-    authors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    authors: PropTypes.arrayOf(PropTypes.string),
     averageRating: PropTypes.number,
-    imageLinks: PropTypes.objectOf(PropTypes.string).isRequired
+    imageLinks: PropTypes.objectOf(PropTypes.string)
 }
 export default Book

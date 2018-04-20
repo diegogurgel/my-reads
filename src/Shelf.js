@@ -9,7 +9,7 @@ class Shelf extends Component {
             <div className="shelf">
                 <h1>{this.props.title}</h1>
                 <ul>
-                    {this.props.books.map(book => (
+                    {this.props.books && this.props.books.map(book => (
                         <li key={book.id}>
                             <Book onBookChanged={this.props.onBookChanged} {...book} />
                         </li>
