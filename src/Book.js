@@ -12,8 +12,8 @@ class Book extends Component {
         book.shelf = selectedStatus.target.value
         updateBook(book, book.shelf)
             .then((something)=>{
-                this.props.onBookChanged(book)
                 this.setState({ loading: false })
+                this.props.onBookChanged(book)
             })
     }
     render(){
