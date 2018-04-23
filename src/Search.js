@@ -23,25 +23,22 @@ class Search extends Component{
     }
     search = (query) => {
         this.setState({ query })
-        if(query){
             searchBook(query).then(books => {
                 if (books && books.error) {
-                    this.setState({ books: [] })
-                } else {
-                    const mappedBooks = books.map(book => {
-                        const sameBook = this.props.myReads.filter((knownBook) => knownBook.id === book.id)[0]
-                        if (sameBook) {
-                            return sameBook
-                        }
-                        book.shelf = 'none'
-                        return book
-                    })
-                    this.setState({ books: mappedBooks })
+                    books = [];
                 }
+                const mappedBooks = books.map(book => {
+                    const sameBook = this.props.myReads.filter((knownBook) => knownBook.id === book.id)[0]
+                    if (sameBook) {
+                        return sameBook
+                    }
+                    book.shelf = 'none'
+                    return book
+                })
+                this.setState({ books: mappedBooks })
+            }).catch(err =>{
+                this.setState({ books: [] })
             })
-        }else{
-            this.setState({books:[]})
-        }
     }
     render(){
         return(
