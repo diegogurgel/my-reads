@@ -1,9 +1,28 @@
 .back-link{
-    height: 48px;
+    height: 54px;
     width: 48px;
     background: url('./icons/back.svg');
     display: block;
     background-repeat: no-repeat;
     background-position: center center;
     float: left;
+}
+
+header>input{
+    height: 38px;
+    background: transparent;
+    font-size: 22px;
+    color: #FFF;
+    border: none;
+    width: 50%;
+    margin: 8px 16px;
+    outline: none;
+    padding: 0 12px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.12)
+}
+@media screen and (max-width:650px){
+    header>input{
+        width: 100%;
+    }
 }

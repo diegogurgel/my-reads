@@ -8,23 +8,40 @@ class Search extends Component{
         query: '',
         books: [] 
     }
-    search = (query) => {
-        this.setState({query})
-        searchBook(query).then(books => {
-            if (books && books.error){
-                this.setState({ books: [] })
-            } else{
-                const mappedBooks = books.map(book => {
-                    const sameBook = this.props.myReads.filter((knownBook) => knownBook.id === book.id)[0]
-                    if(sameBook){
-                        return sameBook
+    onBookChanged = (book) => { 
+        this.props.onBookChanged(book)
+        this.setState(state => (
+            {
+                books:state.books.map(foundBook => {
+                    if(foundBook.id === book.id){
+                        foundBook = book;
                     }
-                    book.shelf = 'none'
-                    return book
+                    return foundBook
                 })
-                this.setState({ books: mappedBooks })
             }
-        })
+        ))
+    }
+    search = (query) => {
+        this.setState({ query })
+        if(query){
+            searchBook(query).then(books => {
+                if (books && books.error) {
+                    this.setState({ books: [] })
+                } else {
+                    const mappedBooks = books.map(book => {
+                        const sameBook = this.props.myReads.filter((knownBook) => knownBook.id === book.id)[0]
+                        if (sameBook) {
+                            return sameBook
+                        }
+                        book.shelf = 'none'
+                        return book
+                    })
+                    this.setState({ books: mappedBooks })
+                }
+            })
+        }else{
+            this.setState({books:[]})
+        }
     }
     render(){
         return(
@@ -34,8 +51,8 @@ class Search extends Component{
                     <input type="search" value={this.state.query} onChange={(ev) => {
                         this.search(ev.target.value)
                     }}/>
-                    <Shelf title="Search result" onBookChanged={this.props.onBookChanged} books={this.state.books} />
                 </header>
+                <Shelf title="Search result" onBookChanged={this.onBookChanged} books={this.state.books} />   
 
 
             </div>

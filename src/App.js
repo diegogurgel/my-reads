@@ -29,6 +29,9 @@ class App extends Component {
         <div>
           <Route path='/' exact render={() => (
             <div className="app">
+              <header>
+                <h1>My Reads</h1>
+              </header>
               <Shelf title="Currently Reading" onBookChanged={this.onBookChanged} books={currentlyReading} />
               <Shelf title="Want to Read" onBookChanged={this.onBookChanged} books={wantToRead} />
               <Shelf title="Read" onBookChanged={this.onBookChanged} books={read} />
